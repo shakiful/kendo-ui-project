@@ -1,0 +1,95 @@
+<div class="auth-page">
+  <div class="card-body">
+    <kendo-card class="align" width="460px" orientation="horizontal">
+      <div class="k-vstack">
+        <div class="example">
+          <form class="k-form k-form-md" [formGroup]="form">
+            <fieldset class="k-form-fieldset">
+              <kendo-formfield>
+                <kendo-floatinglabel
+                  [labelCssClass]="'custom-label-class'"
+                  [text]="'Username'"
+                >
+                  <kendo-textbox
+                    rounded="none"
+                    formControlName="username"
+                    class="k-input-container"
+                    [clearButton]="true"
+                    #username
+                    required
+                  >
+                    <ng-template kendoTextBoxPrefixTemplate>
+                      <kendo-svg-icon
+                        size="xlarge"
+                        [icon]="userIcon"
+                      ></kendo-svg-icon>
+                    </ng-template>
+                  </kendo-textbox>
+                </kendo-floatinglabel>
+                <kendo-formerror>Error: Username is required</kendo-formerror>
+              </kendo-formfield>
+
+              <kendo-formfield>
+                <kendo-floatinglabel
+                  [labelCssClass]="'custom-label-class'"
+                  [text]="'Password'"
+                >
+                  <kendo-textbox
+                    rounded="none"
+                    formControlName="password"
+                    class="k-input-container"
+                    #password
+                    required
+                    [clearButton]="true"
+                  >
+                    <ng-template kendoTextBoxPrefixTemplate>
+                      <kendo-svg-icon
+                        size="xlarge"
+                        [icon]="lockIcon"
+                      ></kendo-svg-icon>
+                    </ng-template>
+
+                    <ng-template kendoTextBoxSuffixTemplate>
+                      <button
+                        kendoButton
+                        look="clear"
+                        icon="eye"
+                        (click)="toggleVisibility()"
+                      ></button>
+                    </ng-template>
+                  </kendo-textbox>
+                </kendo-floatinglabel>
+                <kendo-formerror>Error: Password is required</kendo-formerror>
+              </kendo-formfield>
+
+              <kendo-formfield>
+                <div class="k-checkbox-wrap">
+                  <input
+                    #loggedin
+                    type="checkbox"
+                    kendoCheckBox
+                    formControlName="loggedin"
+                  />
+                  <kendo-label
+                    [for]="loggedin"
+                    class="k-checkbox-label"
+                    text="Keep me logged in"
+                  ></kendo-label>
+                </div>
+              </kendo-formfield>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <button
+        class="login-background"
+        kendoButton
+        themeColor="dark"
+        (click)="login()"
+      >
+        Login
+      </button>
+    </kendo-card>
+  </div>
+</div>
+

@@ -1,0 +1,32 @@
+body {
+  background: #adadb1;
+}
+
+.k-appbar{
+  line-height: 3;
+}
+
+kendo-badge-container {
+  margin-right: 8px;
+}
+ul {
+  font-size: 17px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+li {
+  margin: 0 9px;
+}
+li:hover {
+  cursor: pointer;
+  color: #fc956c;
+}
+.actions .k-button {
+  padding: 0;
+}
+
+.wrap {
+  margin-bottom: 20px;
+}
