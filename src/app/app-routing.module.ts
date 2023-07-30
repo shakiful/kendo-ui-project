@@ -1,20 +1,28 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-const appRoutes: Routes = [
+const routes: Routes = [
   { path: '', redirectTo: '/auth', pathMatch: 'full' },
-  { path: 'home', loadChildren:() => import('./home/home.module').then(m => m.HomeModule) },
-  { path: 'auth', loadChildren:() => import('./auth/auth.module').then(m => m.AuthModule) },
-  // { path: 'about', loadChildren:() => import('./auth/auth.module').then(m => m.AuthModule) },
-  // { path: 'contacts', loadChildren:() => import('./auth/auth.module').then(m => m.AuthModule) },
-
-
-  // { path: 'not-found', component: ShoppingListComponent },
-  // { path: '**', redirectTo: 'not-found' },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
+  // {
+  //   path: 'about',
+  //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  // },
+  // {
+  //   path: 'contact',
+  //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  // },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, {preloadingStrategy:PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

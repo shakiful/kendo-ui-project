@@ -12,6 +12,12 @@ import { products } from './data.products';
   providedIn:'root'
 })
 export class ProductService {
+
+  public isAuthenticated = false;
+
+  
+
+
   public getProducts(
     skip: number,
     pageSize: number,
