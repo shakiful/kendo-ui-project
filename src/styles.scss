@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+// styles.scss
+  // Set the variables here.
+  @import "@progress/kendo-theme-bootstrap/dist/all.scss";
+  @import "bootstrap/scss/bootstrap.scss";
+body{
+  min-height: 100vh;
+  position: relative;
+  height: auto;
+}
