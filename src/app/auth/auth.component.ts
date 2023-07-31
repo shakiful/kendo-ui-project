@@ -11,6 +11,7 @@ import { SVGIcon, lockIcon, userIcon } from '@progress/kendo-svg-icons';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
+  onLogin: boolean = false;
   public lockIcon: SVGIcon = lockIcon;
   public userIcon: SVGIcon = userIcon;
 
@@ -38,6 +39,14 @@ export class AuthComponent {
     this.productsService.isAuthenticated = true;
     console.log(this.productsService.isAuthenticated);
   }
+
+  public register(): void {
+    this.form.reset();
+    this.onLogin = false;
+    console.log(this.form);
+  }
+
+  public signUp(): void {}
 
   public clearForm(): void {
     this.form.reset();

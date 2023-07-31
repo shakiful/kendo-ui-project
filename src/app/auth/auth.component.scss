@@ -3,13 +3,17 @@
   height: 100vh;
 }
 
-.align {
+.align-login {
   display: flex;
   align-items: center;
   height: 325px;
   box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1);
 }
 
+.align-signup {
+  height: 400px;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1);
+}
 
 .card-body {
   display: flex;
@@ -20,45 +24,62 @@
 
 .example {
   padding: 25px;
+}
 
+.register-btn {
+  margin-top: 10px;
 }
 
 .login-background {
-  height: 380px;
+  justify-content: end;
+  height: inherit;
   width: 130px;
   background-image: linear-gradient(to bottom, #2c3437 50%, #242c2f 50%);
   font-size: x-large;
   color: #bfc4c7;
 }
 
-.k-input-container{
+.signup-background {
+  margin-left: 0px;
+  height: inherit;
+  width: 130px;
+  background-image: linear-gradient(to bottom, #2c3437 50%, #242c2f 50%);
+  font-size: x-large;
+  color: #bfc4c7;
+}
+
+.k-input-container {
   font-size: large;
   height: 60px;
   background-color: #cccccc;
 }
 
-::ng-deep .custom-label-class {
-  margin-left: 30px;
-
+.k-input-container-signup {
+  font-size: medium;
+  height: 50px;
+  background-color: #cccccc;
 }
 
-::ng-deep .k-floating-label-container > .k-label{
+::ng-deep .custom-label-class {
+  margin-left: 30px;
+}
+
+::ng-deep .k-floating-label-container > .k-label {
   font-size: large;
   top: -10px;
-  padding: 10px;
+  padding: 8px;
   color: #95969b;
 }
 
-::ng-deep .k-floating-label-container:focus-within > .k-label{
+::ng-deep .k-floating-label-container:focus-within > .k-label {
   top: -14px;
   left: 0;
   transform: scale(1);
 }
 
-::ng-deep .k-input-md .k-input-prefix > .k-svg-icon{
+::ng-deep .k-input-md .k-input-prefix > .k-svg-icon {
   color: #95969b;
 }
-::ng-deep .k-checkbox-wrap{
+::ng-deep .k-checkbox-wrap {
   color: #95969b;
 }
-
