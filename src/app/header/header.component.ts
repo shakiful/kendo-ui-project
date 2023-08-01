@@ -44,6 +44,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
+  onRetrieveUsers() {
+    this.authService.retrieveUsers().subscribe((users) => {
+      this.users = users;
+      console.log(users);
+    });
+  }
+
   data = [
     {
       text: 'My Profile',
