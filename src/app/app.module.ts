@@ -15,6 +15,8 @@ import { IconsModule } from "@progress/kendo-angular-icons";
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
+import { NotificationModule } from '@progress/kendo-angular-notification';
+
 
 
 
@@ -39,6 +41,7 @@ import { AuthModule } from './auth/auth.module';
     ButtonsModule,
     HomeModule,
     AuthModule,
+    NotificationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

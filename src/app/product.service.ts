@@ -13,9 +13,9 @@ import { products } from './data.products';
 })
 export class ProductService {
 
-  public isAuthenticated = false;
-
   
+
+
 
 
   public getProducts(

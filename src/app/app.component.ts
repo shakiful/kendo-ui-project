@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
@@ -14,11 +15,13 @@ import { categories } from "./data.categories";
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private authService:AuthService) {
     this.loadGridItems();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.autoLogin();
+  }
 
   public gridItems: Observable<GridDataResult>;
   public pageSize: number = 10;
