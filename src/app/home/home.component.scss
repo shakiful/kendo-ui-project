@@ -1,23 +1,6 @@
-.page {
-  display: flex;
-  justify-content: center;
-  padding: 20px 10px;
+.signup-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
 }
-.content {
-  background: #f9f9f9;
-  height: 470px;
-  overflow: auto;
-}
-.box {
-  padding: 4px;
-  background-color: #87dfce;
-}
-.big {
-  background-color: #fea69c;
-}
-.rect {
-  background-color: #fee47c;
-}
-
-
-

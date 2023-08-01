@@ -11,13 +11,19 @@
         <ul>
           <li routerLink="home" *ngIf="isAuthenticated"><span>Home</span></li>
           <li routerLink="about" *ngIf="isAuthenticated"><span>About</span></li>
-          <li routerLink="contacts" *ngIf="isAuthenticated"><span>Contacts</span></li>
+          <li routerLink="contacts" *ngIf="isAuthenticated">
+            <span>Contacts</span>
+          </li>
         </ul>
       </kendo-appbar-section>
 
       <kendo-appbar-spacer></kendo-appbar-spacer>
 
       <kendo-appbar-section>
+        <ul>
+          <li *ngIf="isAuthenticated" (click)="onLogout()">Logout</li>
+        </ul>
+
         <kendo-dropdownbutton [data]="data" themeColor="dark">
           User Settings <kendo-svg-icon [icon]="downArrow"></kendo-svg-icon>
         </kendo-dropdownbutton>
