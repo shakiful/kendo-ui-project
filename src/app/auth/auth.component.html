@@ -2,13 +2,22 @@
   <div class="card-body">
     <!-- login-start -->
     <kendo-card
-      *ngIf="onLogin"
+      *ngIf="isLogInMode"
       class="align"
       width="460px"
       orientation="horizontal"
     >
       <div class="k-vstack">
         <div class="example">
+          <div *ngIf="isLoading" style="text-align: center">
+            <kendo-loader
+            type="infinite-spinner"
+            themeColor="primary"
+            size="large"
+          >
+          </kendo-loader>
+          </div>
+
           <form class="k-form k-form-md" [formGroup]="form">
             <fieldset class="k-form-fieldset">
               <kendo-formfield>
@@ -71,13 +80,13 @@
               <kendo-formfield>
                 <div class="k-checkbox-wrap">
                   <input
-                    #loggedin
+                    #loggedIn
                     type="checkbox"
                     kendoCheckBox
-                    formControlName="loggedin"
+                    formControlName="loggedIn"
                   />
                   <kendo-label
-                    [for]="loggedin"
+                    [for]="loggedIn"
                     class="k-checkbox-label"
                     text="Keep me logged in"
                   ></kendo-label>
@@ -86,7 +95,8 @@
               <span>
                 Not a member?
                 <a style="cursor: pointer; color: blue" (click)="register()"
-                  >SignUp Now</a>
+                  >SignUp Now</a
+                >
               </span>
             </fieldset>
           </form>
@@ -95,8 +105,10 @@
       <button
         class="login-background"
         kendoButton
+        type="submit"
+        [disabled]="!form.valid"
         themeColor="dark"
-        (click)="login()"
+        (click)="login(form)"
       >
         Login
       </button>
@@ -104,7 +116,7 @@
     </kendo-card>
 
     <kendo-card
-      *ngIf="!onLogin"
+      *ngIf="!isLogInMode"
       class="align-signup"
       width="inherit"
       orientation="horizontal"
@@ -113,7 +125,7 @@
         <form class="k-form k-form-md" [formGroup]="form">
           <fieldset class="k-form-fieldset">
             <kendo-gridlayout
-              [rows]="['auto', 'auto', 'auto','auto']"
+              [rows]="['auto', 'auto', 'auto', 'auto']"
               [cols]="['1fr', '1fr', '0.5fr']"
               [gap]="10"
             >
@@ -140,9 +152,7 @@
                         </ng-template>
                       </kendo-textbox>
                     </kendo-floatinglabel>
-                    <kendo-formerror
-                      >Error: Name is required</kendo-formerror
-                    >
+                    <kendo-formerror>Error: Name is required</kendo-formerror>
                   </kendo-formfield>
                 </span>
               </kendo-gridlayout-item>
@@ -169,9 +179,7 @@
                         </ng-template>
                       </kendo-textbox>
                     </kendo-floatinglabel>
-                    <kendo-formerror
-                      >Error: Email is required</kendo-formerror
-                    >
+                    <kendo-formerror>Error: Email is required</kendo-formerror>
                   </kendo-formfield>
                 </span>
               </kendo-gridlayout-item>
@@ -217,6 +225,7 @@
                         class="k-input-container-signup"
                         #password
                         required
+                        minlength="6"
                         [clearButton]="true"
                       >
                         <ng-template kendoTextBoxPrefixTemplate>
@@ -246,18 +255,24 @@
                 [col]="1"
                 [row]="3"
                 [colSpan]="2"
-                style="text-align: center; margin-bottom: 20px;"
+                style="text-align: center; margin-bottom: 20px"
               >
                 Already have an account?
                 <a style="cursor: pointer; color: blue" (click)="onSwitch()"
                   >Login</a
                 >
               </kendo-gridlayout-item>
-              <kendo-gridlayout-item [col]="3" [row]="1" [rowSpan]="3" style="text-align: right;">
+              <kendo-gridlayout-item
+                [col]="3"
+                [row]="1"
+                [rowSpan]="3"
+                style="text-align: right"
+              >
                 <button
                   class="signup-background"
                   kendoButton
-                  themeColor="dark"
+                  type="submit"
+                  [disabled]="!form.valid"
                   (click)="signUp()"
                 >
                   SignUp

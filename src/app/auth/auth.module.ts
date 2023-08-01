@@ -8,6 +8,8 @@ import { FloatingLabelModule, LabelModule } from '@progress/kendo-angular-label'
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { IconsModule } from '@progress/kendo-angular-icons';
+import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+import { NotificationModule } from '@progress/kendo-angular-notification';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -22,7 +24,9 @@ import { IconsModule } from '@progress/kendo-angular-icons';
     ButtonsModule,
     IconsModule,
     TextBoxModule,
-    FloatingLabelModule
+    FloatingLabelModule,
+    IndicatorsModule,
+    NotificationModule
   ],
 })
 export class AuthModule {}
