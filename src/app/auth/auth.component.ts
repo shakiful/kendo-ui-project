@@ -1,9 +1,8 @@
-import { products } from './../data.products';
 import { ProductService } from './../product.service';
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { TextBoxComponent } from '@progress/kendo-angular-inputs';
-import { SVGIcon, lockIcon, userIcon } from '@progress/kendo-svg-icons';
+import { SVGIcon, envelopIcon, lockIcon, userIcon } from '@progress/kendo-svg-icons';
 
 @Component({
   selector: 'app-auth',
@@ -11,7 +10,9 @@ import { SVGIcon, lockIcon, userIcon } from '@progress/kendo-svg-icons';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
+  onLogin: boolean = true;
   public lockIcon: SVGIcon = lockIcon;
+  public envelopIcon: SVGIcon = envelopIcon;
   public userIcon: SVGIcon = userIcon;
 
   constructor(private productsService: ProductService) {}
@@ -28,6 +29,8 @@ export class AuthComponent {
   }
 
   public form: FormGroup = new FormGroup({
+    name: new FormControl(),
+    email: new FormControl(),
     username: new FormControl(),
     password: new FormControl(),
     loggedin: new FormControl(),
@@ -37,6 +40,19 @@ export class AuthComponent {
     this.form.markAllAsTouched();
     this.productsService.isAuthenticated = true;
     console.log(this.productsService.isAuthenticated);
+  }
+
+  public register(): void {
+    this.onLogin = false;
+    this.form.reset();
+    console.log(this.form);
+  }
+
+  public signUp(): void {}
+
+  public onSwitch(): void {
+    this.onLogin = true;
+    this.form.reset();
   }
 
   public clearForm(): void {
