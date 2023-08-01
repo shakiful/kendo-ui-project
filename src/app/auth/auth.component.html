@@ -83,9 +83,11 @@
                   ></kendo-label>
                 </div>
               </kendo-formfield>
-              <button class="register-btn" kendoButton (click)="register()" themeColor="primary">
-                Register
-              </button>
+              <span>
+                Not a member?
+                <a style="cursor: pointer; color: blue" (click)="register()"
+                  >SignUp Now</a>
+              </span>
             </fieldset>
           </form>
         </div>
@@ -107,124 +109,164 @@
       width="inherit"
       orientation="horizontal"
     >
-      <div class="k-vstack">
-        <div style="padding: 50px;">
-          <form class="k-form k-form-md" [formGroup]="form">
-            <fieldset class="k-form-fieldset">
-              <kendo-formfield>
-                <kendo-floatinglabel
-                  [labelCssClass]="'custom-label-class'"
-                  [text]="'Username'"
-                >
-                  <kendo-textbox
-                    rounded="medium"
-                    formControlName="username"
-                    class="k-input-container-signup"
-                    [clearButton]="true"
-                    #username
-                    required
-                  >
-                    <ng-template kendoTextBoxPrefixTemplate>
-                      <kendo-svg-icon
-                        size="xlarge"
-                        [icon]="userIcon"
-                      ></kendo-svg-icon>
-                    </ng-template>
-                  </kendo-textbox>
-                </kendo-floatinglabel>
-                <kendo-formerror>Error: Username is required</kendo-formerror>
-              </kendo-formfield>
-              <kendo-formfield>
-                <kendo-floatinglabel
-                  [labelCssClass]="'custom-label-class'"
-                  [text]="'Username'"
-                >
-                  <kendo-textbox
-                    rounded="medium"
-                    formControlName="username"
-                    class="k-input-container-signup"
-                    [clearButton]="true"
-                    #username
-                    required
-                  >
-                    <ng-template kendoTextBoxPrefixTemplate>
-                      <kendo-svg-icon
-                        size="xlarge"
-                        [icon]="userIcon"
-                      ></kendo-svg-icon>
-                    </ng-template>
-                  </kendo-textbox>
-                </kendo-floatinglabel>
-                <kendo-formerror>Error: Username is required</kendo-formerror>
-              </kendo-formfield>
-              <kendo-formfield>
-                <kendo-floatinglabel
-                  [labelCssClass]="'custom-label-class'"
-                  [text]="'Username'"
-                >
-                  <kendo-textbox
-                    rounded="medium"
-                    formControlName="username"
-                    class="k-input-container-signup"
-                    [clearButton]="true"
-                    #username
-                    required
-                  >
-                    <ng-template kendoTextBoxPrefixTemplate>
-                      <kendo-svg-icon
-                        size="xlarge"
-                        [icon]="userIcon"
-                      ></kendo-svg-icon>
-                    </ng-template>
-                  </kendo-textbox>
-                </kendo-floatinglabel>
-                <kendo-formerror>Error: Username is required</kendo-formerror>
-              </kendo-formfield>
+      <div class="signup-component">
+        <form class="k-form k-form-md" [formGroup]="form">
+          <fieldset class="k-form-fieldset">
+            <kendo-gridlayout
+              [rows]="['auto', 'auto', 'auto','auto']"
+              [cols]="['1fr', '1fr', '0.5fr']"
+              [gap]="10"
+            >
+              <kendo-gridlayout-item [col]="1" [row]="1" class="box">
+                <span>
+                  <kendo-formfield>
+                    <kendo-floatinglabel
+                      [labelCssClass]="'custom-label-class'"
+                      [text]="'Name'"
+                    >
+                      <kendo-textbox
+                        rounded="medium"
+                        formControlName="name"
+                        class="k-input-container-signup"
+                        [clearButton]="true"
+                        #username
+                        required
+                      >
+                        <ng-template kendoTextBoxPrefixTemplate>
+                          <kendo-svg-icon
+                            size="xlarge"
+                            [icon]="userIcon"
+                          ></kendo-svg-icon>
+                        </ng-template>
+                      </kendo-textbox>
+                    </kendo-floatinglabel>
+                    <kendo-formerror
+                      >Error: Name is required</kendo-formerror
+                    >
+                  </kendo-formfield>
+                </span>
+              </kendo-gridlayout-item>
+              <kendo-gridlayout-item [col]="2" [row]="1" class="box">
+                <span>
+                  <kendo-formfield>
+                    <kendo-floatinglabel
+                      [labelCssClass]="'custom-label-class'"
+                      [text]="'Email'"
+                    >
+                      <kendo-textbox
+                        rounded="medium"
+                        formControlName="email"
+                        class="k-input-container-signup"
+                        [clearButton]="true"
+                        #username
+                        required
+                      >
+                        <ng-template kendoTextBoxPrefixTemplate>
+                          <kendo-svg-icon
+                            size="xlarge"
+                            [icon]="envelopIcon"
+                          ></kendo-svg-icon>
+                        </ng-template>
+                      </kendo-textbox>
+                    </kendo-floatinglabel>
+                    <kendo-formerror
+                      >Error: Email is required</kendo-formerror
+                    >
+                  </kendo-formfield>
+                </span>
+              </kendo-gridlayout-item>
+              <kendo-gridlayout-item [col]="1" [row]="2" class="box">
+                <span>
+                  <kendo-formfield>
+                    <kendo-floatinglabel
+                      [labelCssClass]="'custom-label-class'"
+                      [text]="'Username'"
+                    >
+                      <kendo-textbox
+                        rounded="medium"
+                        formControlName="username"
+                        class="k-input-container-signup"
+                        [clearButton]="true"
+                        #username
+                        required
+                      >
+                        <ng-template kendoTextBoxPrefixTemplate>
+                          <kendo-svg-icon
+                            size="xlarge"
+                            [icon]="userIcon"
+                          ></kendo-svg-icon>
+                        </ng-template>
+                      </kendo-textbox>
+                    </kendo-floatinglabel>
+                    <kendo-formerror
+                      >Error: Username is required</kendo-formerror
+                    >
+                  </kendo-formfield>
+                </span>
+              </kendo-gridlayout-item>
+              <kendo-gridlayout-item [col]="2" [row]="2" class="box">
+                <span
+                  ><kendo-formfield>
+                    <kendo-floatinglabel
+                      [labelCssClass]="'custom-label-class'"
+                      [text]="'Password'"
+                    >
+                      <kendo-textbox
+                        rounded="medium"
+                        formControlName="password"
+                        class="k-input-container-signup"
+                        #password
+                        required
+                        [clearButton]="true"
+                      >
+                        <ng-template kendoTextBoxPrefixTemplate>
+                          <kendo-svg-icon
+                            size="xlarge"
+                            [icon]="lockIcon"
+                          ></kendo-svg-icon>
+                        </ng-template>
 
-              <kendo-formfield>
-                <kendo-floatinglabel
-                  [labelCssClass]="'custom-label-class'"
-                  [text]="'Password'"
+                        <ng-template kendoTextBoxSuffixTemplate>
+                          <button
+                            kendoButton
+                            look="clear"
+                            icon="eye"
+                            (click)="toggleVisibility()"
+                          ></button>
+                        </ng-template>
+                      </kendo-textbox>
+                    </kendo-floatinglabel>
+                    <kendo-formerror
+                      >Error: Password is required</kendo-formerror
+                    >
+                  </kendo-formfield>
+                </span>
+              </kendo-gridlayout-item>
+              <kendo-gridlayout-item
+                [col]="1"
+                [row]="3"
+                [colSpan]="2"
+                style="text-align: center; margin-bottom: 20px;"
+              >
+                Already have an account?
+                <a style="cursor: pointer; color: blue" (click)="onSwitch()"
+                  >Login</a
                 >
-                  <kendo-textbox
-                    rounded="medium"
-                    formControlName="password"
-                    class="k-input-container-signup"
-                    #password
-                    required
-                    [clearButton]="true"
-                  >
-                    <ng-template kendoTextBoxPrefixTemplate>
-                      <kendo-svg-icon
-                        size="xlarge"
-                        [icon]="lockIcon"
-                      ></kendo-svg-icon>
-                    </ng-template>
-
-                    <ng-template kendoTextBoxSuffixTemplate>
-                      <button
-                        kendoButton
-                        look="clear"
-                        icon="eye"
-                        (click)="toggleVisibility()"
-                      ></button>
-                    </ng-template>
-                  </kendo-textbox>
-                </kendo-floatinglabel>
-                <kendo-formerror>Error: Password is required</kendo-formerror>
-              </kendo-formfield>
-            </fieldset>
-          </form>
-        </div>
+              </kendo-gridlayout-item>
+              <kendo-gridlayout-item [col]="3" [row]="1" [rowSpan]="3" style="text-align: right;">
+                <button
+                  class="signup-background"
+                  kendoButton
+                  themeColor="dark"
+                  (click)="signUp()"
+                >
+                  SignUp
+                </button>
+              </kendo-gridlayout-item>
+            </kendo-gridlayout>
+          </fieldset>
+        </form>
       </div>
-      <button
-        class="signup-background"
-        kendoButton
-        themeColor="dark"
-        (click)="signUp()"
-      >
-        SignUp
-      </button>
     </kendo-card>
   </div>
 </div>
