@@ -1,3 +1,4 @@
+import { UserDataService } from './../auth/shared-service/UserDataService.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppBarThemeColor } from '@progress/kendo-angular-navigation';
@@ -16,7 +17,7 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private userDataService: UserDataService) {}
 
   users: any[];
   access: string;
@@ -47,7 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onRetrieveUsers() {
     this.authService.retrieveUsers().subscribe((users) => {
       this.users = users;
-      console.log(users);
+      this.userDataService.setUsers(users);
     });
   }
 

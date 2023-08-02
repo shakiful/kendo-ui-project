@@ -46,7 +46,7 @@ export class AuthService {
         username,
         email,
         password,
-        role: role.toLowerCase(),
+        role: role,
       })
       .pipe(
         catchError(this.handleError),

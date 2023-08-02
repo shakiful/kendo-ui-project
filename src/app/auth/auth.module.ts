@@ -10,6 +10,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { IconsModule } from '@progress/kendo-angular-icons';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
 import { NotificationModule } from '@progress/kendo-angular-notification';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -26,7 +27,8 @@ import { NotificationModule } from '@progress/kendo-angular-notification';
     TextBoxModule,
     FloatingLabelModule,
     IndicatorsModule,
-    NotificationModule
+    NotificationModule,
+    DropDownsModule
   ],
 })
 export class AuthModule {}
