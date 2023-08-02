@@ -20,13 +20,11 @@
       <kendo-appbar-spacer></kendo-appbar-spacer>
 
       <kendo-appbar-section>
-        <ul>
-          <li *ngIf="isAuthenticated" (click)="onLogout()">Logout</li>
-        </ul>
-
+        <li (click)="onRetrieveUsers()">User Infos</li>
         <kendo-dropdownbutton [data]="data" themeColor="dark">
           User Settings <kendo-svg-icon [icon]="downArrow"></kendo-svg-icon>
         </kendo-dropdownbutton>
+        <li (click)="onLogout()">Logout</li>
       </kendo-appbar-section>
     </kendo-appbar>
   </div>

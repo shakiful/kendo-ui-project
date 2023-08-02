@@ -10,12 +10,18 @@
       <div class="k-vstack">
         <div class="example">
           <div *ngIf="isLoading" style="text-align: center">
-            <kendo-loader
-            type="infinite-spinner"
-            themeColor="primary"
-            size="large"
-          >
-          </kendo-loader>
+            <div class="k-loading-panel">
+              <div class="k-loading-panel-mask"></div>
+              <div class="k-loading-panel-wrapper">
+                <kendo-loader
+                  type="infinite-spinner"
+                  themeColor="primary"
+                  size="large"
+                >
+                </kendo-loader>
+                <div class="k-loading-panel-text">Loading...</div>
+              </div>
+            </div>
           </div>
 
           <form class="k-form k-form-md" [formGroup]="form">
@@ -134,11 +140,11 @@
                   <kendo-formfield>
                     <kendo-floatinglabel
                       [labelCssClass]="'custom-label-class'"
-                      [text]="'Name'"
+                      [text]="'Username'"
                     >
                       <kendo-textbox
                         rounded="medium"
-                        formControlName="name"
+                        formControlName="username"
                         class="k-input-container-signup"
                         [clearButton]="true"
                         #username
@@ -152,7 +158,9 @@
                         </ng-template>
                       </kendo-textbox>
                     </kendo-floatinglabel>
-                    <kendo-formerror>Error: Name is required</kendo-formerror>
+                    <kendo-formerror
+                      >Error: Username is required</kendo-formerror
+                    >
                   </kendo-formfield>
                 </span>
               </kendo-gridlayout-item>
@@ -183,34 +191,19 @@
                   </kendo-formfield>
                 </span>
               </kendo-gridlayout-item>
-              <kendo-gridlayout-item [col]="1" [row]="2" class="box">
-                <span>
-                  <kendo-formfield>
-                    <kendo-floatinglabel
-                      [labelCssClass]="'custom-label-class'"
-                      [text]="'Username'"
-                    >
-                      <kendo-textbox
-                        rounded="medium"
-                        formControlName="username"
-                        class="k-input-container-signup"
-                        [clearButton]="true"
-                        #username
-                        required
-                      >
-                        <ng-template kendoTextBoxPrefixTemplate>
-                          <kendo-svg-icon
-                            size="xlarge"
-                            [icon]="userIcon"
-                          ></kendo-svg-icon>
-                        </ng-template>
-                      </kendo-textbox>
-                    </kendo-floatinglabel>
-                    <kendo-formerror
-                      >Error: Username is required</kendo-formerror
-                    >
-                  </kendo-formfield>
-                </span>
+              <kendo-gridlayout-item
+                style="margin-top: 15px;"
+                [col]="1"
+                [row]="2"
+                class="box"
+              >
+                <kendo-floatinglabel style="height: 100%;" text="Select value">
+                  <kendo-dropdownlist formControlName="role" class="kendo-dropdownlist" [data]="roleArray" themeColor="dark">
+                    Role
+                    <kendo-svg-icon
+                      [icon]="downArrow"
+                    ></kendo-svg-icon> </kendo-dropdownlist
+                ></kendo-floatinglabel>
               </kendo-gridlayout-item>
               <kendo-gridlayout-item [col]="2" [row]="2" class="box">
                 <span
@@ -273,7 +266,7 @@
                   kendoButton
                   type="submit"
                   [disabled]="!form.valid"
-                  (click)="signUp()"
+                  (click)="signUp(form)"
                 >
                   SignUp
                 </button>

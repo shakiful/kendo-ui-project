@@ -5,12 +5,14 @@ import { Router } from '@angular/router';
 import { TextBoxComponent } from '@progress/kendo-angular-inputs';
 import {
   SVGIcon,
+  arrowDownIcon,
   envelopIcon,
   lockIcon,
   userIcon,
 } from '@progress/kendo-svg-icons';
 import { AuthResponseData, AuthService } from './auth.service';
 import { NotificationService } from '@progress/kendo-angular-notification';
+import { UserRoles } from './user.enum.model';
 
 @Component({
   selector: 'app-auth',
@@ -24,6 +26,7 @@ export class AuthComponent {
   public lockIcon: SVGIcon = lockIcon;
   public envelopIcon: SVGIcon = envelopIcon;
   public userIcon: SVGIcon = userIcon;
+  public downArrow: SVGIcon = arrowDownIcon;
 
   constructor(
     private authService: AuthService,
@@ -43,7 +46,7 @@ export class AuthComponent {
   }
 
   public form: FormGroup = new FormGroup({
-    name: new FormControl(),
+    role: new FormControl(),
     email: new FormControl(),
     username: new FormControl(),
     password: new FormControl(),
@@ -55,18 +58,18 @@ export class AuthComponent {
       return;
     }
     const username = form.value.username;
-    const role = form.value.role;
     const email = form.value.email;
     const password = form.value.password;
+    const role = form.value.role;
     const loggedIn = form.value.loggedIn;
 
-
+    console.log(form.value.role);
 
     let authObs: Observable<AuthResponseData>;
     this.isLoading = true;
     if (this.isLogInMode) {
       authObs = this.authService.login(username, password);
-      this.authService.setLoggedIn(loggedIn)
+      this.authService.setLoggedIn(loggedIn);
     } else {
       authObs = this.authService.signup(username, email, password, role);
     }
@@ -81,33 +84,44 @@ export class AuthComponent {
           if (this.isLogInMode) {
             this.notificationService.show({
               content: 'Successfully Logged in',
-              hideAfter: 600,
+              hideAfter: 900,
               position: { horizontal: 'center', vertical: 'top' },
               animation: { type: 'fade', duration: 400 },
               type: { style: 'success', icon: true },
             });
           } else {
-            if (this.isLogInMode) {
-              this.notificationService.show({
-                content: 'Successfully Signed Up',
-                hideAfter: 600,
-                position: { horizontal: 'center', vertical: 'top' },
-                animation: { type: 'fade', duration: 400 },
-                type: { style: 'success', icon: true },
-              });
-            }
+            this.notificationService.show({
+              content: 'Successfully Signed Up',
+              hideAfter: 900,
+              position: { horizontal: 'center', vertical: 'top' },
+              animation: { type: 'fade', duration: 400 },
+              type: { style: 'success', icon: true },
+            });
+            this.isLogInMode = true
           }
         }
       },
       error: (errorMessage) => {
         console.log(errorMessage);
-        this.notificationService.show({
-          content: errorMessage,
-          hideAfter: 600,
-          position: { horizontal: 'center', vertical: 'top' },
-          animation: { type: 'fade', duration: 400 },
-          type: { style: 'error', icon: true },
-        });
+        if (this.isLogInMode) {
+          this.notificationService.show({
+            content: errorMessage,
+            hideAfter: 900,
+            position: { horizontal: 'center', vertical: 'top' },
+            animation: { type: 'fade', duration: 400 },
+            type: { style: 'error', icon: true },
+          });
+        } else {
+          const errors = errorMessage.join(', ');
+          this.notificationService.show({
+            content: errors,
+            hideAfter: 900,
+            position: { horizontal: 'center', vertical: 'top' },
+            animation: { type: 'fade', duration: 400 },
+            type: { style: 'error', icon: true },
+          });
+        }
+
         this.error = true;
         this.isLoading = false;
       },
@@ -124,7 +138,9 @@ export class AuthComponent {
     console.log(this.form);
   }
 
-  public signUp(): void {}
+  public signUp(form): void {
+    this.login(form);
+  }
 
   public onSwitch(): void {
     this.isLogInMode = true;
@@ -134,4 +150,8 @@ export class AuthComponent {
   public clearForm(): void {
     this.form.reset();
   }
+
+  roleArray = Object.keys(UserRoles)
+    .map((key) => UserRoles[key])
+    .filter((key) => isNaN(Number(key)));
 }
