@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router, private userDataService: UserDataService) {}
 
   users: any[];
-  access: string;
+  // access: string;
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userSub = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
-      this.access = user.role.toString();
+      // this.access = user.role.toString();
     });
   }
 
@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.retrieveUsers().subscribe((users) => {
       this.users = users;
       this.userDataService.setUsers(users);
+      this.router.navigate(['/home'])
     });
   }
 

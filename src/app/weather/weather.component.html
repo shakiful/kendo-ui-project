@@ -1,0 +1,28 @@
+<h2 style="text-align: center;">Weather Data</h2>
+
+<div class="container">
+
+  <kendo-grid
+    [kendoGridBinding]="weatherData"
+    [pageSize]="limit"
+    [skip]="skip"
+    [pageable]="true"
+    (pageChange)="pageChange($event)"
+    [height]="400"
+  >
+    <kendo-grid-column field="id" title="ID"></kendo-grid-column>
+    <kendo-grid-column field="weatherType" title="Weather Type"></kendo-grid-column>
+    <kendo-grid-column field="icon" title="Icon"></kendo-grid-column>
+    <kendo-grid-column field="temp" title="Temp"></kendo-grid-column>
+    <kendo-grid-column field="feelsLike" title="Feels Like"></kendo-grid-column>
+    <kendo-grid-column field="tempMin" title="Temp Min"></kendo-grid-column>
+    <kendo-grid-column field="tempMax" title="Temp Max"></kendo-grid-column>
+    <kendo-grid-column field="pressure" title="Pressure"></kendo-grid-column>
+    <kendo-grid-column field="humidity" title="Humidity"></kendo-grid-column>
+    <kendo-grid-column field="visibility" title="Visibility"></kendo-grid-column>
+    <kendo-grid-column field="windSpeed" title="Wind Speed"></kendo-grid-column>
+    <kendo-grid-column field="windDeg" title="Wind Deg"></kendo-grid-column>
+    <kendo-grid-column field="clouds" title="Clouds"></kendo-grid-column>
+    <kendo-grid-column field="dt" title="Date"></kendo-grid-column>
+  </kendo-grid>
+</div>

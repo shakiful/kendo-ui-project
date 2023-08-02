@@ -9,10 +9,10 @@
         </button>
 
         <ul>
-          <li routerLink="home" *ngIf="isAuthenticated"><span>Home</span></li>
-          <li routerLink="about" *ngIf="isAuthenticated"><span>About</span></li>
-          <li routerLink="contacts" *ngIf="isAuthenticated">
-            <span>Contacts</span>
+          <li routerLink="home" *ngIf="isAuthenticated">Home</li>
+          <li routerLink="about" *ngIf="isAuthenticated">About</li>
+          <li routerLink="weather" *ngIf="isAuthenticated">
+            Weather
           </li>
         </ul>
       </kendo-appbar-section>

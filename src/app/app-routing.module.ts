@@ -15,10 +15,10 @@ const routes: Routes = [
   //   path: 'about',
   //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   // },
-  // {
-  //   path: 'contact',
-  //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-  // },
+  {
+    path: 'weather',
+    loadChildren: () => import('./weather/weather.module').then((m) => m.WeatherModule),
+  },
 ];
 
 @NgModule({
