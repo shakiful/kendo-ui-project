@@ -11,10 +11,14 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
-  // {
-  //   path: 'about',
-  //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
-  // },
+  {
+    path: 'preference',
+    loadChildren: () => import('./preference/preference.module').then((m) => m.PreferenceModule),
+  },
+  {
+    path: 'upload',
+    loadChildren: () => import('./upload/upload.module').then((m) => m.UploadModule),
+  },
   {
     path: 'weather',
     loadChildren: () => import('./weather/weather.module').then((m) => m.WeatherModule),

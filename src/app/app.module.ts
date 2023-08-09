@@ -13,10 +13,8 @@ import { HeaderComponent } from './header/header.component';
 import { NavigationModule } from '@progress/kendo-angular-navigation';
 import { IconsModule } from "@progress/kendo-angular-icons";
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
-import { HomeModule } from './home/home.module';
-import { AuthModule } from './auth/auth.module';
 import { NotificationModule } from '@progress/kendo-angular-notification';
-import { WeatherModule } from './weather/weather.module';
+
 
 
 
@@ -40,10 +38,7 @@ import { WeatherModule } from './weather/weather.module';
     IconsModule,
     IndicatorsModule,
     ButtonsModule,
-    HomeModule,
-    AuthModule,
     NotificationModule,
-    WeatherModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

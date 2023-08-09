@@ -1,0 +1,28 @@
+.k-form {
+  width: 400px;
+}
+
+.example
+{
+  display: flex;
+  justify-content: center;
+}
+
+.k-radio {
+  margin-top: 10px;
+  vertical-align: text-bottom;
+}
+
+.upload {
+  margin-top: 10px;
+}
+
+::ng-deep .k-button-solid-primary{
+  border-color: #212529;
+    background-color: #212529;
+}
+
+::ng-deep .k-button-solid-primary:hover{
+  border-color: black;
+    background-color: black;
+}

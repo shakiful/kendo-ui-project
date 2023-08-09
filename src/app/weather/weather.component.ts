@@ -17,11 +17,10 @@ export class WeatherComponent implements OnInit {
   public gridView: GridDataResult;
   public limit = 10;
   public skip = 1;
+  public buttonCount = 5;
 
-  total_page: number;
-
-  // tableSize: number = 10;
-  // tableSizes: any = [5, 10, 15, 20];
+  page: number = 1;
+  total: number;
 
   constructor(
     private http: HttpClient,
@@ -30,32 +29,39 @@ export class WeatherComponent implements OnInit {
 
   public pageChange(event: PageChangeEvent): void {
     this.skip = event.skip;
-    this.loadItems();
+    this.page = this.skip / 10 + 1;
+    this.fetchWeatherData(this.page, this.limit);
+    console.log(this.page);
+    console.log(this.skip);
   }
 
   ngOnInit() {
-    this.fetchWeatherData(this.skip, this.limit);
-    console.log(this.skip, this.limit, this.total_page);
-    console.log(this.fetchWeatherData(this.skip, this.limit));
+    this.fetchWeatherData(this.page, this.limit);
+    console.log(this.skip);
   }
 
   private loadItems(): void {
-    const startIndex = this.skip;
-    const endIndex = this.skip + this.limit;
+    console.log(this.skip);
+    console.log(this.page);
+
+    // const startIndex = (this.skip - 1) * this.limit;
+    // const endIndex = startIndex + this.limit;
 
     this.gridView = {
-      data: this.weatherData.slice(startIndex, endIndex),
-      total: this.total_page,
+      data: this.weatherData,
+      total: this.total,
     };
-    console.log(this.total_page);
-    console.log(endIndex);
-    console.log(startIndex);
+    console.log(this.gridView);
+    console.log(this.total);
+    // console.log(endIndex);
   }
 
-  fetchWeatherData(skip, limit) {
+  fetchWeatherData(skip: number, limit: number) {
     this.weatherService
       .fetchWeatherData(skip, limit)
       .subscribe((response: any) => {
+        console.log(skip);
+
         if (Array.isArray(response.data)) {
           (this.weatherData = response.data.map(
             (forecast: any) => ({
@@ -75,16 +81,17 @@ export class WeatherComponent implements OnInit {
               dt: forecast.dt,
               createdAt: forecast.createdAt,
             }),
-            (error) => {
+            (error: Error) => {
               console.log(error);
             }
           )),
-            (this.skip = response.page);
+            (this.page = response.page);
           this.limit = response.limit;
-          this.total_page = response.total;
+          this.total = response.total;
           console.log(this.skip);
+          console.log(this.page);
           console.log(this.limit);
-          console.log(this.total_page);
+          console.log(this.total);
 
           this.loadItems();
         }

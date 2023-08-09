@@ -1,9 +1,8 @@
-<h2 style="text-align: center;">Weather Data</h2>
+<h2 style="text-align: center">Weather Data</h2>
 
 <div class="container">
-
   <kendo-grid
-    [kendoGridBinding]="weatherData"
+    [data]="gridView"
     [pageSize]="limit"
     [skip]="skip"
     [pageable]="true"
@@ -11,7 +10,10 @@
     [height]="400"
   >
     <kendo-grid-column field="id" title="ID"></kendo-grid-column>
-    <kendo-grid-column field="weatherType" title="Weather Type"></kendo-grid-column>
+    <kendo-grid-column
+      field="weatherType"
+      title="Weather Type"
+    ></kendo-grid-column>
     <kendo-grid-column field="icon" title="Icon"></kendo-grid-column>
     <kendo-grid-column field="temp" title="Temp"></kendo-grid-column>
     <kendo-grid-column field="feelsLike" title="Feels Like"></kendo-grid-column>
@@ -19,10 +21,27 @@
     <kendo-grid-column field="tempMax" title="Temp Max"></kendo-grid-column>
     <kendo-grid-column field="pressure" title="Pressure"></kendo-grid-column>
     <kendo-grid-column field="humidity" title="Humidity"></kendo-grid-column>
-    <kendo-grid-column field="visibility" title="Visibility"></kendo-grid-column>
+    <kendo-grid-column
+      field="visibility"
+      title="Visibility"
+    ></kendo-grid-column>
     <kendo-grid-column field="windSpeed" title="Wind Speed"></kendo-grid-column>
     <kendo-grid-column field="windDeg" title="Wind Deg"></kendo-grid-column>
     <kendo-grid-column field="clouds" title="Clouds"></kendo-grid-column>
     <kendo-grid-column field="dt" title="Date"></kendo-grid-column>
+
+    <ng-template
+      kendoPagerTemplate
+      let-totalPages="totalPages"
+      let-currentPage="currentPage"
+    >
+      <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+      <kendo-pager-numeric-buttons
+        [buttonCount]="buttonCount"
+      ></kendo-pager-numeric-buttons>
+      <kendo-pager-next-buttons></kendo-pager-next-buttons>
+      <kendo-pager-input></kendo-pager-input>
+      <kendo-pager-info></kendo-pager-info>
+    </ng-template>
   </kendo-grid>
 </div>

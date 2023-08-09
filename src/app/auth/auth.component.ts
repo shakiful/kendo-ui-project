@@ -90,6 +90,7 @@ export class AuthComponent {
               type: { style: 'success', icon: true },
             });
           } else {
+
             this.notificationService.show({
               content: 'Successfully Signed Up',
               hideAfter: 900,

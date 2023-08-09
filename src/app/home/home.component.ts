@@ -29,10 +29,11 @@ export class HomeComponent implements OnDestroy {
   }
 
   public pageSize = 10;
-  public skip = 0;
+  public skip = 1;
 
   public pageChange(event: PageChangeEvent): void {
     this.skip = event.skip;
+
     this.loadItems();
   }
 
