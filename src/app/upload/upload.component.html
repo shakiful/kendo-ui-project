@@ -25,22 +25,34 @@
 
         <kendo-formerror>Error: Age is required</kendo-formerror>
       </kendo-formfield>
-
       <div class="upload">
-        <kendo-upload
-          [saveUrl]="uploadSaveUrl"
-          [removeUrl]="uploadRemoveUrl"
-          [autoUpload]="false"
-          actionsLayout="stretched"
-          (select)="toggle(true)"
-          (clear)="toggle(false)"
-          (remove)="toggle(false)"
-        >
-        </kendo-upload>
+        <kendo-formfield>
+          <kendo-label class="k-mt-2" text="Avatar"></kendo-label>
+          <kendo-upload
+            #avatar
+            [formControlName]="'avatar'"
+            [restrictions]="myRestrictions"
+            [saveUrl]="uploadSaveUrl"
+            [removeUrl]="uploadRemoveUrl"
+            [multiple]="false"
+            [ngModel]="myFiles"
+          >
+            <kendo-upload-messages select="Add images"> </kendo-upload-messages>
+          </kendo-upload>
+          <div *ngIf="myFiles.length">
+            <img
+              height="100"
+              style="margin: 5px; border: 1px solid gray"
+              [src]="myFiles.src"
+            />
+          </div>
+
+          <kendo-formerror>Error: Avatar not found or invalid</kendo-formerror>
+        </kendo-formfield>
       </div>
 
       <div class="k-form-buttons k-justify-content-end">
-        <button kendoButton themeColor="dark" (click)="submitForm()">
+        <button [disabled]="!form.valid && form.touched" kendoButton themeColor="dark" (click)="submitForm()">
           Submit
         </button>
         <button kendoButton (click)="clearForm()">Clear</button>

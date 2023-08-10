@@ -11,10 +11,12 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { UploadsModule } from '@progress/kendo-angular-upload';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UploadInterceptor } from './upload.interceptor';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [UploadComponent],
   imports: [
+    BrowserModule,
     RouterModule,
     UploadRoutingModule,
     LayoutModule,

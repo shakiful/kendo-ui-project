@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from './preferenceInfo.model';
+import { Upload } from './preferenceInfo.model';
 import { GroupDescriptor, GroupResult, groupBy } from '@progress/kendo-data-query';
-import { products } from './products';
+import { uploadInfo } from './upload-info';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +9,9 @@ import { products } from './products';
   styleUrls: ['./preference.component.scss'],
 })
 export class PreferenceComponent implements OnInit {
-  public groups: GroupDescriptor[] = [{ field: "SupplierID" }];
+  public groups: GroupDescriptor[] = [{ field: "Age" }];
 
-  public gridView: GroupResult[] | Product[];
+  public gridView: GroupResult[] | Upload[];
 
   public ngOnInit(): void {
     this.loadProducts();
@@ -23,6 +23,6 @@ export class PreferenceComponent implements OnInit {
   }
 
   private loadProducts(): void {
-    this.gridView = groupBy(products, this.groups);
+    this.gridView = groupBy(uploadInfo, this.groups);
   }
 }

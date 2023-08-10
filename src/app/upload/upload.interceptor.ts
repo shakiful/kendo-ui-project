@@ -17,7 +17,7 @@ export class UploadInterceptor implements HttpInterceptor {
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (req.url === 'localStorageUpload') {
+    if (req.url === 'https://v2.convertapi.com/upload') {
       const events: Observable<HttpEvent<unknown>>[] = [0, 30, 60, 100].map(
         (x) =>
           of(<HttpProgressEvent>{
@@ -30,25 +30,10 @@ export class UploadInterceptor implements HttpInterceptor {
       const success = of(new HttpResponse({ status: 200 })).pipe(delay(1000));
       events.push(success);
 
-      // Handle local storage saving
-      const fileReader = new FileReader();
-      const formData = new FormData();
-      formData.append('file', req.body as File);
-
-      fileReader.onload = (event) => {
-        localStorage.setItem(
-          'localStorageUpload',
-          event.target.result as string
-        );
-      };
-
-      fileReader.readAsDataURL(req.body as File);
-
       return concat(...events);
     }
 
     if (req.url === 'removeUrl') {
-      localStorage.removeItem('localStorageUpload');
       return of(new HttpResponse({ status: 200 }));
     }
 
