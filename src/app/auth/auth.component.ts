@@ -63,7 +63,6 @@ export class AuthComponent {
     const role = form.value.role;
     const loggedIn = form.value.loggedIn;
 
-    console.log(form.value.role);
 
     let authObs: Observable<AuthResponseData>;
     this.isLoading = true;
@@ -76,8 +75,8 @@ export class AuthComponent {
 
     authObs.subscribe({
       next: (data) => {
-        console.log(loggedIn);
-        console.log(data);
+        console.log(loggedIn,"loggedIn");
+        console.log(data,"data");
         this.isLoading = false;
         this.router.navigate(['/home']);
         if (this.error == false) {

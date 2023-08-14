@@ -10,6 +10,7 @@ import {
 } from '@angular/common/http';
 import { Observable, of, concat } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class UploadInterceptor implements HttpInterceptor {
@@ -17,7 +18,7 @@ export class UploadInterceptor implements HttpInterceptor {
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (req.url === 'https://v2.convertapi.com/upload') {
+    if (req.url === `${environment.apiUrl}/api/blog`) {
       const events: Observable<HttpEvent<unknown>>[] = [0, 30, 60, 100].map(
         (x) =>
           of(<HttpProgressEvent>{
@@ -33,7 +34,7 @@ export class UploadInterceptor implements HttpInterceptor {
       return concat(...events);
     }
 
-    if (req.url === 'removeUrl') {
+    if (req.url === 'https://demos.telerik.com/kendo-ui/service-v4/upload/remove') {
       return of(new HttpResponse({ status: 200 }));
     }
 

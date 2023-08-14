@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ProductService } from './product.service';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { categories } from "./data.categories";
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',

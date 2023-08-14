@@ -39,6 +39,7 @@
           >
             <kendo-upload-messages select="Add images"> </kendo-upload-messages>
           </kendo-upload>
+
           <div *ngIf="myFiles.length">
             <img
               height="100"
@@ -52,7 +53,7 @@
       </div>
 
       <div class="k-form-buttons k-justify-content-end">
-        <button [disabled]="!form.valid && form.touched" kendoButton themeColor="dark" (click)="submitForm()">
+        <button [disabled]="!form.valid && form.touched" kendoButton themeColor="dark" (click)="submitForm(form)">
           Submit
         </button>
         <button kendoButton (click)="clearForm()">Clear</button>

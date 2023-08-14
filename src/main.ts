@@ -7,5 +7,6 @@ import { enableProdMode } from '@angular/core';
 
 enableProdMode();
 
+
 const platform = platformBrowserDynamic();
 platform.bootstrapModule(AppModule);

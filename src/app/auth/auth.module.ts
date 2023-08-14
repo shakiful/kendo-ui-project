@@ -11,6 +11,7 @@ import { IconsModule } from '@progress/kendo-angular-icons';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
 import { NotificationModule } from '@progress/kendo-angular-notification';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [AuthComponent],
@@ -30,5 +31,12 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     NotificationModule,
     DropDownsModule
   ],
+  // providers: [
+  //   {
+  //     provide: HTTP_INTERCEPTORS,
+  //     useClass: AuthInterceptor,
+  //     multi: true,
+  //   },
+  // ]
 })
 export class AuthModule {}

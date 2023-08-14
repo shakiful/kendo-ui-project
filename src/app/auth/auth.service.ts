@@ -9,6 +9,7 @@ import { User } from './user.model';
 import { Router } from '@angular/router';
 import { UserRoles } from './user.enum.model';
 import { JwtService } from './jwt.service';
+import { environment } from 'src/environments/environment';
 
 export interface AuthResponseData {
   accessToken: string;
@@ -31,6 +32,12 @@ export class AuthService {
     private jwtService: JwtService
   ) {}
 
+  getAuthToken() {
+    const token = this.user.value.accessToken;
+    console.log('Token:', token);
+    return token;
+  }
+
   setLoggedIn(loggedIn: boolean) {
     this.loggedIn = loggedIn;
     console.log(loggedIn);
@@ -41,8 +48,9 @@ export class AuthService {
 
   signup(username: string, email: string, password: string, role: string) {
     this.inLogin = false;
+
     return this.http
-      .post<AuthResponseData>('http://localhost:3000/api/users', {
+      .post<AuthResponseData>(`${environment.apiUrl}/api/users`, {
         username,
         email,
         password,
@@ -65,7 +73,7 @@ export class AuthService {
   login(username: string, password: string) {
     this.inLogin = true;
     return this.http
-      .post<AuthResponseData>('http://localhost:3000/api/auth/login', {
+      .post<AuthResponseData>(`${environment.apiUrl}/api/auth/login`, {
         username,
         password,
         returnSecureToken: true,
@@ -86,23 +94,22 @@ export class AuthService {
   }
 
   retrieveUsers() {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.user.value.accessToken}`
-    );
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.user.value.accessToken}`
+    // );
 
     return this.http
-      .get<any[]>('http://localhost:3000/api/v1/users', { headers })
+      .get<any[]>(
+        `${environment.apiUrl}/api/v1/users`
+        // { headers }
+      )
       .pipe(catchError(this.handleError));
   }
 
   autoLogin() {
     const isLoggedIn = JSON.parse(localStorage.getItem('loggedIn'));
     if (isLoggedIn) {
-      console.log(isLoggedIn);
-
-      console.log("im in yes");
-
       const userData: {
         username: string;
         email: string;
@@ -127,7 +134,7 @@ export class AuthService {
       }
     } else {
       console.log(isLoggedIn);
-      console.log("mission Failed");
+      console.log('mission Failed');
 
       return;
     }
@@ -144,21 +151,21 @@ export class AuthService {
       this.user.value.accessToken
     );
     const id = decodedToken.sub;
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.user.value.accessToken}`
-    );
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.user.value.accessToken}`
+    // );
 
     return this.http
       .put<AuthResponseData>(
-        `http://localhost:3000/api/users/${id}`,
+        `${environment.apiUrl}/api/users/${id}`,
         {
           username,
           email,
           password,
           role: role.toLowerCase(),
-        },
-        { headers }
+        }
+        // { headers }
       )
       .pipe(
         catchError(this.handleError),
@@ -177,17 +184,20 @@ export class AuthService {
   }
 
   delete() {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.user.value.accessToken}`
-    );
+    // const headers = new HttpHeaders().set(
+    //   'Authorization',
+    //   `Bearer ${this.user.value.accessToken}`
+    // );
 
     const decodedToken = this.jwtService.decodeToken(
       this.user.value.accessToken
     );
     const id = decodedToken.sub;
     return this.http
-      .delete(`http://localhost:3000/api/users/${id}`, { headers })
+      .delete(
+        `${environment.apiUrl}/api/users/${id}`
+        //  { headers }
+      )
       .pipe(catchError(this.handleError));
   }
 
